@@ -1,0 +1,120 @@
+---
+title: "Einführung 1 FZI"
+author: "Lino Zurmuehl"
+date: "12.12.2023"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Einführung in R
+
+## Einleitung
+
+In diesem Dokument erhaltet ihr eine sanfte Einführung in R. Im ersten Teil werde ich damit beginnen, was RStudio ist und wie ihr es installieren könnt sowie einige empfohlene Einstellungen. Danach werden wir mit dem Coden beginnen: wie man Pakete installiert, arithmetische Operationen in R durchführt, Werte Objekten zuweist und die verschiedenen Klassen von Objekten.
+
+Im Allgemeinen wurde dieses Tutorial stark von Richard Cottons "Learning R" [@cotton2013] und Hadley Wickhams und Garrett Grolemunds "R for Data Science" (abgekürzt als R4DS) inspiriert. Letzteres ist [online verfügbar](https://r4ds.had.co.nz) [@wickham2016a]. Wir werden nicht sofort mit den Paketen aus dem tidyverse beginnen (obwohl [starke Argumente](http://varianceexplained.org/r/teach-tidyverse/) dafür gemacht wurden, dies von Anfang an zu tun).
+
+Beim Blick auf RMarkdown baue ich hauptsächlich auf "R Markdown: The Definitive Guide" auf - das ebenfalls [online frei verfügbar ist](https://bookdown.org/yihui/rmarkdown/) [@xie2018].
+
+# Los geht's: R und RStudio installieren
+
+## R
+
+Um R herunterzuladen, besucht einfach die Website des [Comprehensive R Archive Network (CRAN)](https://cran.r-project.org). CRAN ist einfach ein Netzwerk von FTP- und Webservern auf der ganzen Welt. Hier werden Dinge im Zusammenhang mit R (Code, Dokumentation usw.) gespeichert und können heruntergeladen werden.
+
+Am oberen Rand der Seite findet ihr eine Box mit drei Links, die sich je nach eurem Betriebssystem unterscheiden. Wählt denjenigen aus, der zutrifft. Klickt dann einfach auf den Link zum Herunterladen der neuesten Version (wir werden mit R 4.0.0 arbeiten).
+
+Nachdem der Download abgeschlossen ist, führt einfach das Installationsprogramm aus und wenn es fertig ist, seid ihr startbereit.
+
+Neue Versionen von R werden mehrmals im Jahr veröffentlicht. Wenn ihr R aktualisieren möchtet, ist der Prozess derselbe wie bei der Neuinstallation: Geht zu [https://cran.r-project.org](https://cran.r-project.org), ladet die neueste Version herunter, installiert sie und das war's.
+
+## RStudio
+
+### Download und Installation
+
+Wenn ihr auf einem Windows- oder Mac-Rechner seid und auf das R-Symbol klickt, wird ein Fenster (die sogenannte Mac- oder Windows-GUI - grafische Benutzeroberfläche) angezeigt, das eurem Terminal sehr ähnlich sieht. Ihr könnt jetzt einfach R-Code dort eingeben und ihn ausführen - und das ist tatsächlich der Weg, den die Benutzer auf die alte Weise gegangen sind. Meiner Meinung nach ist das ziemlich umständlich. Glücklicherweise haben wir uns seitdem viel weiterentwickelt und IDEs (integrierte Entwicklungsumgebungen) für R entwickelt. Die beliebteste davon ist RStudio, die wir ebenfalls verwenden werden.
+
+Um RStudio zu installieren, klickt einfach auf [diesen Link](https://rstudio.com/products/rstudio/download/), wählt die richtige Version aus (RStudio Desktop - Open Source License) und klickt auf die Schaltfläche "Herunterladen". Nach dem Download installiert es einfach, und danach seid ihr startbereit.
+
+Bitte beachtet, dass ihr sowohl R als auch RStudio installieren müsst. Letzteres ist nur ein Werkzeug, das euch bei der Arbeit mit dem ersten hilft.
+
+# Warum R?
+
+Die [Popularität](http://r4stats.com/articles/popularity/) von R hat in den letzten fünf bis zehn Jahren rasant zugenommen.
+
+"Unter Verwendung dieser Analogie sind Programme wie SPSS Busse, einfach zu bedienen für Standardaufgaben, aber sehr frustrierend, wenn ihr etwas tun möchtet, das nicht bereits vorprogrammiert ist."
+
+# Ein R-Projekt anlegen
+
+Erstellt auf eurem Computer **einen Ordner** mit dem Namen **"R_Kurs"**. Wo dieser Ordner sich befindet, ist euch überlassen. Erstellt auf eurem Computer **einen weiteren Ordner** mit dem Namen **"Datensaetze"**.
+
+Klickt oben links auf *File > New Project*. Es öffnet sich ein Fenster. Wählt hier **Existing Directory** aus. Navigiert dann zum Ordner **R_Kurs**, den ihr soeben erstellt habt.
+
+In eurem Ordner sollte jetzt eine Datei **"R_Kurs.Rproj"** zu sehen sein.
+
+# Technische Grundlagen - Die R-Studio Umgebung
+
+RStudio ist eine leistungsstarke integrierte Entwicklungsumgebung (IDE) für R. Es bietet eine benutzerfreundliche Oberfläche, um effizient mit R zu arbeiten. Nachdem ihr R installiert habt, ist RStudio das Werkzeug, das ihr verwenden werdet, um euren R-Code zu schreiben und auszuführen.
+
+# Technische Grundlagen - Verschiedene Arten von Dateien
+
+- PDF-Format hat die Endung .pdf, zum Beispiel "Hausarbeit_final_final2_final3_jetztaberwirklich.pdf".
+- Durch die Endung weiß der Computer, womit er es zu tun hat und wie die Datei zu öffnen ist.
+- Für unseren Kurs sind vor allem folgende Formate relevant:
+    + **Beispiel.R** Dateien mit der Endung .R sind *R-Skript Dateien*, hier speichert ihr euren *Code*.
+    + **Beispiel.rds** Dateien mit der Endung .rds sind *R-Daten Dateien*, hier werden eure *Daten* gespeichert.
+
+- **Beispiel.Rmd** Dateien mit der Endung .Rmd sind *R-Markdown Dateien*. Ihr könnt es euch vorstellen wie ein Word-Dokument, nur mit einigen zusätzlichen Funktionen und Eigenschaften, die gerade für diesen Kurs sehr hilfreich sind.
+
+- **Beispiel.csv** Dateien mit der Endung .csv sind sogenannte comma-seperated-values-Dateien. Auch hier sind *Daten* gespeichert. Der Aufbau der Datei ist dabei sehr einfach und daher gut zwischen verschiedenen Sprachen und Softwarepaketen kompatibel.
+
+## Technische Grundlagen - Zuweisungen
+
+\footnotesize
+```{r echo=TRUE, include=TRUE}
+7 + 2
+ergebnis <- 2 + 7
+ergebnis
+```
+
+## Technische Grundlagen - Zuweisungen
+
+```{r linewidth = 60, error=TRUE, echo=TRUE, include=TRUE}
+"a" + "a"
+buchstaben <- "a" + "a"
+buchstaben
+```
+## Technische Grundlagen - Daten einlesen
+
+**Aus einer CSV-Datei**
+
+```{r linewidth = 60,error=FALSE, echo=TRUE, include=TRUE}
+datensatz <- read.csv("", sep = ";")
+```
+
+**Aus einer SPSS-Datei**
+
+```{r linewidth = 60, error=FALSE, echo=TRUE, include=TRUE}
+install.packages("haven")
+library(haven)
+datensatz <- read_sav("")
+```
+
+## Technische Grundlagen - Daten einlesen
+
+**Aus einer R-Daten Datei**
+
+```{r linewidth = 60, error=FALSE, echo=TRUE, include=TRUE}
+datensatz <- readRDS("")
+```
+
+## Technische Grundlagen - Dataframes
+
+- Jede Beobachtung (z.B. ein Befragter oder ein Land) ist eine Zeile.
+- Jede empirische Variable, die gemessen wurde, ist eine Spalte.
+- Im Prinzip eine große **Vier-Felder-Tafel**
+
+Bei Fragen hilft oft die Seite [www.rdocumentation.org](https://www.rdocumentation.org/) weiter.
